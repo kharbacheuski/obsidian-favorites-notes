@@ -89,13 +89,19 @@
             content: "";
             position: absolute;
             width: 2px;
-            height: 24px;
+            height: 20px;
             background-color: var(--color-accent);
             border-radius: 2px;
             left: 6px;
-            top: calc(50% - 12px);
+            top: calc(50% - 16px);
+            transition: height 0.1s ease, top 0.1s ease;
         }
 
+        &.focus {
+            &::after {
+                height: 30px;
+            }
+        }
 
         &:hover, &.focus {
             background-color: var(--tag-background);
@@ -112,12 +118,19 @@
         }
 
         .favorites-notes-card-hint {
+            /* display: none; */
             font-size: 10px;
             color: var(--text-muted);
             opacity: 0;
             transition: opacity 0.1s ease;
             margin-left: auto;
         }
+
+        /* &.focus {
+            .favorites-notes-card-hint { 
+                display: block;
+            }
+        } */
 
     }
 
