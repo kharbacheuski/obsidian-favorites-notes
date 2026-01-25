@@ -1,0 +1,149 @@
+.favorites-notes-settings-row {
+    border-radius: 6px;
+    transition: background-color 0.15s ease;
+    display: block;
+
+    &.is-dragging {
+        opacity: 0.4;
+    }
+
+    &.is-drag-over {
+        background-color: var(--background-modifier-hover);
+    }
+
+    .clickable-icon {
+        cursor: grab;
+        opacity: 0.8;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    input {
+        width: 100%;
+    }
+}
+
+.modal-bg {
+    opacity: 1;
+    backdrop-filter: blur(3px);
+}
+
+.favorites-notes-add-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+
+    .favorites-notes-add-button {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: var(--text-muted);
+        background-color: var(--interactive-bg);
+
+        transition: background-color 0.15s ease, transform 0.1s ease;
+
+        &:hover {
+            background-color: var(--interactive-hover);
+            transform: scale(1.05);
+        }
+    }
+}
+
+/* Модалка Favorites Notes */
+
+.favorites-notes-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 5px;
+
+    .favorites-notes-modal-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .favorites-notes-card {
+        padding: 12px 16px;
+        border-radius: 8px;
+        background-color: var(--interactive-bg);
+        cursor: pointer;
+        transition: transform 0.1s ease, background-color 0.1s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        position: relative;
+        justify-content: space-between;
+
+        border: 1px solid transparent;
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 24px;
+            background-color: var(--color-accent);
+            border-radius: 2px;
+            left: 6px;
+            top: calc(50% - 12px);
+        }
+
+
+        &:hover, &.focus {
+            background-color: var(--tag-background);
+            border: 1px solid var(--color-accent-2);
+        }
+
+        .favorites-notes-card-info {
+            display: flex;
+            gap: 3px;
+        }
+
+        a.tag {
+            font-size: 12px;
+        }
+
+        .favorites-notes-card-hint {
+            font-size: 10px;
+            color: var(--text-muted);
+            opacity: 0;
+            transition: opacity 0.1s ease;
+            margin-left: auto;
+        }
+
+    }
+
+    .favorites-notes-card.focus .favorites-notes-card-hint,
+    .favorites-notes-card:hover .favorites-notes-card-hint {
+        opacity: 1;
+    }
+
+    .setting-item-control {
+        position: relative;
+
+        input {
+            padding-inline-start: 36px;
+        }
+
+        &::before {
+            top: calc((var(--input-height) - var(--search-icon-size)) / 2);
+            inset-inline-start: var(--size-4-2);
+            position: absolute;
+            content: '';
+            height: var(--search-icon-size);
+            width: var(--search-icon-size);
+            display: block;
+            background-color: var(--search-icon-color);
+            -webkit-mask-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27currentColor%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27><circle cx=%2711%27 cy=%2711%27 r=%278%27></circle><line x1=%2721%27 y1=%2721%27 x2=%2716.65%27 y2=%2716.65%27></line></svg>");
+            -webkit-mask-repeat: no-repeat;
+        }
+    }
+}

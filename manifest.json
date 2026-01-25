@@ -1,0 +1,10 @@
+{
+    "id": "favorites-notes",
+    "name": "Favorites Notes",
+    "version": "1.0.0",
+    "minAppVersion": "1.0.0",
+    "description": "Quick access to your favorite notes",
+    "author": "kharbacheuski",
+    "authorUrl": "",
+    "isDesktopOnly": false
+  }

@@ -1,0 +1,15 @@
+# IDE
+*.iml
+.idea
+.nova
+.vscode
+
+# npm
+node_modules
+package-lock.json
+
+# build
+out
+
+# obsidian
+data.json
