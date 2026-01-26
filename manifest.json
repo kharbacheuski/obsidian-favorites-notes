@@ -3,9 +3,8 @@
   "name": "Favorites Notes",
   "version": "1.0.0",
   "minAppVersion": "1.0.0",
-  "description": "Quick access to your favorite notes",
+  "description": "Quick access to your favorite notes.",
   "author": "kharbacheuski",
-  "repo": "https://github.com/kharbacheuski/obsidian-favorites-notes",
   "authorUrl": "https://github.com/kharbacheuski",
   "isDesktopOnly": false
 }
