@@ -7,7 +7,6 @@ export const DEFAULT_SETTINGS = {
     favoriteNotes: [],
     splitOnCtrlEnter: true
 }
-
 export default class FavoritesNotesSettingTab extends PluginSettingTab {
     plugin: FavoritesNotesPlugin;
     dragIndex: number | null = null;
@@ -21,17 +20,19 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
         const { containerEl } = this;
         containerEl.empty();
 
-        containerEl.createEl("h2", { text: CURRENT_LOCALE.favoritesNotesTitle });
+        new Setting(containerEl)
+            .setName(CURRENT_LOCALE.favoritesNotesTitle)
+            .setHeading();
 
         new Setting(containerEl)
             .setName(CURRENT_LOCALE.splitOnCtrlEnter)
             .setDesc(CURRENT_LOCALE.splitOnCtrlEnterDesc)
             .addToggle(toggle => {
                 toggle.setValue(this.plugin.settings.splitOnCtrlEnter)
-                      .onChange(async value => {
-                          this.plugin.settings.splitOnCtrlEnter = value;
-                          await this.plugin.saveSettings();
-                      });
+                    .onChange(async value => {
+                        this.plugin.settings.splitOnCtrlEnter = value;
+                        void this.plugin.saveSettings();
+                    });
             });
 
         const favoriteNotes = this.plugin.settings?.favoriteNotes || [];
@@ -61,7 +62,7 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
                 .setValue(note.path || "")
                 .onChange(async value => {
                     note.path = value;
-                    await this.plugin.saveSettings();
+                    void this.plugin.saveSettings();
                 });
 
             text.inputEl.addEventListener("click", () => {
@@ -75,7 +76,7 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
                 .setValue(note.title || "")
                 .onChange(async value => {
                     note.title = value;
-                    await this.plugin.saveSettings();
+                    void this.plugin.saveSettings();
                 });
         });
 
@@ -84,7 +85,7 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
             btn.setTooltip(CURRENT_LOCALE.deleteNoteButton);
             btn.onClick(async () => {
                 this.plugin.settings.favoriteNotes.splice(index, 1);
-                await this.plugin.saveSettings();
+                void this.plugin.saveSettings();
                 this.display();
             });
         });
@@ -116,14 +117,14 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
         rowEl.addEventListener("dragleave", () => {
             rowEl.removeClass("is-drag-over");
         });
-        rowEl.addEventListener("drop", async () => {
+        rowEl.addEventListener("drop", () => {
             rowEl.removeClass("is-drag-over");
             if (this.dragIndex === null || this.dragIndex === index) return;
             const items = this.plugin.settings.favoriteNotes;
             const moved = items.splice(this.dragIndex, 1)[0];
             items.splice(index, 0, moved);
             this.dragIndex = null;
-            await this.plugin.saveSettings();
+            void this.plugin.saveSettings();
             this.display();
         });
     }

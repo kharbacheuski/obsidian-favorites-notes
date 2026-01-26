@@ -14,7 +14,7 @@ export default class FavoritesNotesPlugin extends Plugin {
 		});
 
 		this.addCommand({
-			id: "open-favorites-notes",
+			id: "open-favorites-modal",
 			name: CURRENT_LOCALE.openFavoritesNotesModal,
 			callback: () => this.openModal()
 		});

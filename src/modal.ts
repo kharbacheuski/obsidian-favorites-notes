@@ -32,17 +32,8 @@ export default class FavoritesNotesModal extends Modal {
             text.setPlaceholder(CURRENT_LOCALE.searchPlaceholder);
             searchInputEl = text.inputEl;
 
-            // кастомные стили
-            searchInputEl.style.borderRadius = "var(--input-radius)";
-            searchInputEl.style.padding = "var(--input-padding);";
-            searchInputEl.style.width = "100%";
-            searchInputEl.style.boxSizing = "border-box";
-            searchInputEl.style.border = "var(--input-border-width) solid var(--background-modifier-border);";
-            searchInputEl.style.backgroundColor = "var(--background-modifier-form-field)";
-            searchInputEl.style.color = "var(--text-normal)";
-
-            new FilePopoverSuggest(this.app, searchInputEl, (file: TFile) => {
-                this.app.workspace.getLeaf(true).openFile(file);
+            new FilePopoverSuggest(this.app, searchInputEl, async (file: TFile) => {
+                await this.app.workspace.getLeaf(true).openFile(file);
                 this.close();
             });
         });
@@ -77,7 +68,7 @@ export default class FavoritesNotesModal extends Modal {
         }
     }
 
-        openFocusedCard(openIn: "tab" | "split" = "tab") {
+        async openFocusedCard(openIn: "tab" | "split" = "tab") {
             const favoriteNotes = this.favoriteNotes || [];
             if (this.currentFocusIndex < 0 || this.currentFocusIndex >= favoriteNotes.length) return;
 
@@ -89,7 +80,7 @@ export default class FavoritesNotesModal extends Modal {
                 return;
             }
 
-            this.app.workspace.getLeaf(openIn).openFile(file);
+            await this.app.workspace.getLeaf(openIn).openFile(file);
             this.close();
         }
 
@@ -111,7 +102,7 @@ export default class FavoritesNotesModal extends Modal {
             head.createDiv({ cls: "favorites-notes-card-title", text: title || path });
 
             // Хинт ctrl+enter
-            const hintEl = head.createDiv({
+            head.createDiv({
                 cls: "favorites-notes-card-hint",
                 text: this.plugin.settings.splitOnCtrlEnter ? CURRENT_LOCALE.cardHintSplit : ""
             });
@@ -130,12 +121,12 @@ export default class FavoritesNotesModal extends Modal {
             }
 
             // Клик по карточке
-            card.onclick = () => {
+            card.onclick = async () => {
                 if (!(file instanceof TFile)) {
                     new Notice(CURRENT_LOCALE.invalidFile);
                     return;
                 }
-                this.app.workspace.getLeaf(true).openFile(file);
+                await this.app.workspace.getLeaf(true).openFile(file);
                 this.close();
             };
         });

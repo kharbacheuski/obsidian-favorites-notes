@@ -8,7 +8,7 @@ export const Locales: { [k: string]: Locale } = {
     ru: RU
 };
 
-let langCode: string = localStorage.getItem("language")
+let langCode: string = window.localStorage.getItem("language")
     ?.toLowerCase()
     ?.split("-")[0] || "en";
 

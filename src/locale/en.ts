@@ -1,6 +1,6 @@
 export const EN: Record<string, string> = {
     // Settings tab
-    favoritesNotesTitle: "Favorite Notes",
+    favoritesNotesTitle: "Favorite notes",
     splitOnCtrlEnter: "Split on Ctrl + Enter",
     splitOnCtrlEnterDesc: "Open note in split view when pressing Ctrl + Enter",
 
@@ -22,9 +22,9 @@ export const EN: Record<string, string> = {
 
     // Modal
     searchPlaceholder: "Start typing file name…",
-    favoritesNotesHeader: "Favorite Notes",
+    favoritesNotesHeader: "Favorite notes",
     favoritesNotesDesc: "Search and quick jump to notes",
 
     // Commands
-    openFavoritesNotesModal: "Open Favorite Notes",
+    openFavoritesNotesModal: "Open favorite notes",
 };

@@ -143,7 +143,11 @@
         position: relative;
 
         input {
-            padding-inline-start: 36px;
+            border: var(--input-border-width) solid var(--background-modifier-border);
+            border-radius: var(--input-radius);
+            padding: var(--input-padding);
+            padding-left: 32px;
+            width: 100%;
         }
 
         &::before {

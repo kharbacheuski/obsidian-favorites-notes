@@ -26,5 +26,5 @@ export const RU: Record<string, string> = {
     favoritesNotesDesc: "Поиск и быстрый переход к заметкам",
 
     // Commands
-    openFavoritesNotesModal: "Открыть Избранные Заметки",
+    openFavoritesNotesModal: "Открыть избранные заметки",
 };
