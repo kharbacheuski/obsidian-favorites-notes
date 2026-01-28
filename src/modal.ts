@@ -33,8 +33,8 @@ export default class FavoritesNotesModal extends Modal {
             searchInputEl = text.inputEl;
 
             new FilePopoverSuggest(this.app, searchInputEl, (file: TFile) => {
-                this.app.workspace.getLeaf(true).openFile(file)
-                .then(() => this.close());
+                void this.app.workspace.getLeaf(true).openFile(file)
+                this.close();
             });
         });
 
