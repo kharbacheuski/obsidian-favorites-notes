@@ -29,7 +29,7 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
             .setDesc(CURRENT_LOCALE.splitOnCtrlEnterDesc)
             .addToggle(toggle => {
                 toggle.setValue(this.plugin.settings.splitOnCtrlEnter)
-                    .onChange(async value => {
+                    .onChange(value => {
                         this.plugin.settings.splitOnCtrlEnter = value;
                         void this.plugin.saveSettings();
                     });
@@ -60,7 +60,7 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
         setting.addText((text: TextComponent) => {
             text.setPlaceholder(CURRENT_LOCALE.pathPlaceholder)
                 .setValue(note.path || "")
-                .onChange(async value => {
+                .onChange(value => {
                     note.path = value;
                     void this.plugin.saveSettings();
                 });
@@ -74,7 +74,7 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
         setting.addText((text: TextComponent) => {
             text.setPlaceholder(CURRENT_LOCALE.titlePlaceholder)
                 .setValue(note.title || "")
-                .onChange(async value => {
+                .onChange(value => {
                     note.title = value;
                     void this.plugin.saveSettings();
                 });
@@ -83,7 +83,7 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
         setting.addExtraButton(btn => {
             btn.setIcon("trash");
             btn.setTooltip(CURRENT_LOCALE.deleteNoteButton);
-            btn.onClick(async () => {
+            btn.onClick(() => {
                 this.plugin.settings.favoriteNotes.splice(index, 1);
                 void this.plugin.saveSettings();
                 this.display();
@@ -97,7 +97,7 @@ export default class FavoritesNotesSettingTab extends PluginSettingTab {
             note.path = file.path;
             text.setValue(file.path);
             if (!note.title) note.title = file.basename;
-            this.plugin.saveSettings();
+            void this.plugin.saveSettings();
             this.display();
         }).open();
     }

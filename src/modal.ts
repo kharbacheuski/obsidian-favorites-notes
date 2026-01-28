@@ -32,9 +32,9 @@ export default class FavoritesNotesModal extends Modal {
             text.setPlaceholder(CURRENT_LOCALE.searchPlaceholder);
             searchInputEl = text.inputEl;
 
-            new FilePopoverSuggest(this.app, searchInputEl, async (file: TFile) => {
-                await this.app.workspace.getLeaf(true).openFile(file);
-                this.close();
+            new FilePopoverSuggest(this.app, searchInputEl, (file: TFile) => {
+                this.app.workspace.getLeaf(true).openFile(file)
+                .then(() => this.close());
             });
         });
 
@@ -54,7 +54,7 @@ export default class FavoritesNotesModal extends Modal {
             this.focusCard(newIndex);
         } else if (e.key === 'Enter' && this.currentFocusIndex >= 0) {
             const isSplit = this.plugin.settings.splitOnCtrlEnter && e.ctrlKey;
-            this.openFocusedCard(isSplit ? "split" : "tab");
+            void this.openFocusedCard(isSplit ? "split" : "tab");
         }
     }
 
